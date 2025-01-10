@@ -23,5 +23,13 @@ async def artwork_search(title: str):
 
     return artwork
 
+@app.get('/api/artworksw/{title}')
+def artwork_search_sw(title: str):
+    artwork = art_data.get_artwork_sw(title)
+    if not artwork:
+        raise fastapi.HTTPException(status_code=404)
+
+    return artwork
+
 if __name__ == '__main__':
     uvicorn.run(app)
